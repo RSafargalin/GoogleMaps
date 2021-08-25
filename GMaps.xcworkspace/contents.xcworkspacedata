@@ -2,6 +2,12 @@
 <Workspace
    version = "1.0">
    <FileRef
+      location = "group:GMaps/Core/CoreData/RoutePath+CoreDataClass.swift">
+   </FileRef>
+   <FileRef
+      location = "group:GMaps/Core/CoreData/RoutePath+CoreDataProperties.swift">
+   </FileRef>
+   <FileRef
       location = "group:GMaps.xcodeproj">
    </FileRef>
    <FileRef

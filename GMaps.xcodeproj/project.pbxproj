@@ -14,6 +14,10 @@
 		FE86171F26CD4385001F6D38 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FE86171D26CD4385001F6D38 /* LaunchScreen.storyboard */; };
 		FE86172D26CD44EB001F6D38 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE86172C26CD44EB001F6D38 /* MapViewController.swift */; };
 		FE86173126CD47B5001F6D38 /* SecretConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE86173026CD47B5001F6D38 /* SecretConstants.swift */; };
+		FE86175A26D4FD73001F6D38 /* Route.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = FE86175826D4FD73001F6D38 /* Route.xcdatamodeld */; };
+		FE86175C26D4FF89001F6D38 /* CLLocationCoordinate2DTransformer.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE86175B26D4FF89001F6D38 /* CLLocationCoordinate2DTransformer.swift */; };
+		FE86175E26D50E57001F6D38 /* DataBaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE86175D26D50E57001F6D38 /* DataBaseManager.swift */; };
+		FE86176026D5209A001F6D38 /* AlertBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE86175F26D5209A001F6D38 /* AlertBuilder.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +32,10 @@
 		FE86172026CD4385001F6D38 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		FE86172C26CD44EB001F6D38 /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		FE86173026CD47B5001F6D38 /* SecretConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SecretConstants.swift; sourceTree = "<group>"; };
+		FE86175926D4FD73001F6D38 /* Route.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Route.xcdatamodel; sourceTree = "<group>"; };
+		FE86175B26D4FF89001F6D38 /* CLLocationCoordinate2DTransformer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CLLocationCoordinate2DTransformer.swift; sourceTree = "<group>"; };
+		FE86175D26D50E57001F6D38 /* DataBaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataBaseManager.swift; sourceTree = "<group>"; };
+		FE86175F26D5209A001F6D38 /* AlertBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertBuilder.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -119,6 +127,8 @@
 		FE86172926CD4492001F6D38 /* Core */ = {
 			isa = PBXGroup;
 			children = (
+				FE86176126D5209F001F6D38 /* Builders */,
+				FE86175526D4F817001F6D38 /* CoreData */,
 			);
 			path = Core;
 			sourceTree = "<group>";
@@ -137,6 +147,24 @@
 				FE86172C26CD44EB001F6D38 /* MapViewController.swift */,
 			);
 			path = Map;
+			sourceTree = "<group>";
+		};
+		FE86175526D4F817001F6D38 /* CoreData */ = {
+			isa = PBXGroup;
+			children = (
+				FE86175826D4FD73001F6D38 /* Route.xcdatamodeld */,
+				FE86175B26D4FF89001F6D38 /* CLLocationCoordinate2DTransformer.swift */,
+				FE86175D26D50E57001F6D38 /* DataBaseManager.swift */,
+			);
+			path = CoreData;
+			sourceTree = "<group>";
+		};
+		FE86176126D5209F001F6D38 /* Builders */ = {
+			isa = PBXGroup;
+			children = (
+				FE86175F26D5209A001F6D38 /* AlertBuilder.swift */,
+			);
+			path = Builders;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -252,9 +280,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FE86175A26D4FD73001F6D38 /* Route.xcdatamodeld in Sources */,
 				FE86171326CD4383001F6D38 /* AppDelegate.swift in Sources */,
+				FE86175C26D4FF89001F6D38 /* CLLocationCoordinate2DTransformer.swift in Sources */,
 				FE86172D26CD44EB001F6D38 /* MapViewController.swift in Sources */,
+				FE86176026D5209A001F6D38 /* AlertBuilder.swift in Sources */,
 				FE86171526CD4383001F6D38 /* SceneDelegate.swift in Sources */,
+				FE86175E26D50E57001F6D38 /* DataBaseManager.swift in Sources */,
 				FE86173126CD47B5001F6D38 /* SecretConstants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -451,6 +483,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		FE86175826D4FD73001F6D38 /* Route.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				FE86175926D4FD73001F6D38 /* Route.xcdatamodel */,
+			);
+			currentVersion = FE86175926D4FD73001F6D38 /* Route.xcdatamodel */;
+			path = Route.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = FE86170726CD4383001F6D38 /* Project object */;
 }
