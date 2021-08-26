@@ -18,6 +18,7 @@
 		FE86175C26D4FF89001F6D38 /* CLLocationCoordinate2DTransformer.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE86175B26D4FF89001F6D38 /* CLLocationCoordinate2DTransformer.swift */; };
 		FE86175E26D50E57001F6D38 /* DataBaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE86175D26D50E57001F6D38 /* DataBaseManager.swift */; };
 		FE86176026D5209A001F6D38 /* AlertBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE86175F26D5209A001F6D38 /* AlertBuilder.swift */; };
+		FE86176526D65F85001F6D38 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE86176426D65F85001F6D38 /* LocationManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -36,6 +37,7 @@
 		FE86175B26D4FF89001F6D38 /* CLLocationCoordinate2DTransformer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CLLocationCoordinate2DTransformer.swift; sourceTree = "<group>"; };
 		FE86175D26D50E57001F6D38 /* DataBaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataBaseManager.swift; sourceTree = "<group>"; };
 		FE86175F26D5209A001F6D38 /* AlertBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertBuilder.swift; sourceTree = "<group>"; };
+		FE86176426D65F85001F6D38 /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -127,8 +129,8 @@
 		FE86172926CD4492001F6D38 /* Core */ = {
 			isa = PBXGroup;
 			children = (
+				FE86176226D65E6A001F6D38 /* Managers */,
 				FE86176126D5209F001F6D38 /* Builders */,
-				FE86175526D4F817001F6D38 /* CoreData */,
 			);
 			path = Core;
 			sourceTree = "<group>";
@@ -165,6 +167,23 @@
 				FE86175F26D5209A001F6D38 /* AlertBuilder.swift */,
 			);
 			path = Builders;
+			sourceTree = "<group>";
+		};
+		FE86176226D65E6A001F6D38 /* Managers */ = {
+			isa = PBXGroup;
+			children = (
+				FE86176326D65E80001F6D38 /* Location */,
+				FE86175526D4F817001F6D38 /* CoreData */,
+			);
+			path = Managers;
+			sourceTree = "<group>";
+		};
+		FE86176326D65E80001F6D38 /* Location */ = {
+			isa = PBXGroup;
+			children = (
+				FE86176426D65F85001F6D38 /* LocationManager.swift */,
+			);
+			path = Location;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -288,6 +307,7 @@
 				FE86171526CD4383001F6D38 /* SceneDelegate.swift in Sources */,
 				FE86175E26D50E57001F6D38 /* DataBaseManager.swift in Sources */,
 				FE86173126CD47B5001F6D38 /* SecretConstants.swift in Sources */,
+				FE86176526D65F85001F6D38 /* LocationManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

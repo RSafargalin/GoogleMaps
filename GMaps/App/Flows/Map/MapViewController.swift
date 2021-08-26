@@ -22,12 +22,10 @@ final class MapViewController: UIViewController {
     }()
     
     #warning("TODO: Рефакторинг")
-    private var locationManager: CLLocationManager?
     private var markers = [GMSMarker]()
     private var coordinates = [CLLocationCoordinate2D]()
     private var route: GMSPolyline?
     private var routePath: GMSMutablePath?
-    private var beginBackgroundTask: UIBackgroundTaskIdentifier?
     
     private var isTrackingUpdatingLocation: Bool = false {
         willSet {
@@ -35,6 +33,7 @@ final class MapViewController: UIViewController {
         }
     }
     
+    private lazy var locationManager: LocationManager = LocationManagerImpl(delegate: self)
     private let dataBaseManager: DataBaseManager = CoreDataManager()
     private let alertBuilder: AlertBuilder = AlertBuilderImpl()
     
@@ -79,13 +78,13 @@ final class MapViewController: UIViewController {
         setup()
     }
     
-    #warning("TODO: Рефакторинг")
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         
         stopFetchingUserLocationUpdate()
-        locationManager?.delegate = nil
-        locationManager = nil
+        locationManager.stopMonitoringSignificantLocationChanges()
+        locationManager.unbindDelegate()
+        
     }
     
     // MARK: - Private methods
@@ -110,8 +109,9 @@ final class MapViewController: UIViewController {
     
     private func setup() {
         configureUI()
-        configureLocationManager()
-        requestAuthorizationIfNeeded()
+        locationManager.configure()
+        locationManager.requestAuthorizationIfNeeded()
+        locationManager.startMonitoringSignificantLocationChanges()
         
         previousRouteCoordinates = dataBaseManager.fetchLastRouteCoordinate()
     }
@@ -148,19 +148,6 @@ final class MapViewController: UIViewController {
         }
     }
     
-    private func configureLocationManager() {
-        locationManager = CLLocationManager()
-        locationManager?.delegate = self
-        locationManager?.allowsBackgroundLocationUpdates = true
-        locationManager?.pausesLocationUpdatesAutomatically = false
-        locationManager?.startMonitoringSignificantLocationChanges()
-    }
-    
-    private func requestAuthorizationIfNeeded() {
-        locationManager?.requestWhenInUseAuthorization()
-        locationManager?.requestAlwaysAuthorization()
-    }
-    
     #warning("TODO: Рефакторинг")
     private func startFetchingUserLocationUpdate() {
         isTrackingUpdatingLocation = true
@@ -168,12 +155,12 @@ final class MapViewController: UIViewController {
         route = GMSPolyline()
         routePath = GMSMutablePath()
         route?.map = mapView
-        locationManager?.startUpdatingLocation()
+        locationManager.startUpdatingLocation()
     }
     
     private func stopFetchingUserLocationUpdate() {
         isTrackingUpdatingLocation = false
-        locationManager?.stopUpdatingLocation()
+        locationManager.stopUpdatingLocation()
         coordinates = fetchCoordinates(from: routePath)
         
         do {
@@ -208,7 +195,15 @@ final class MapViewController: UIViewController {
         route?.map = mapView
         previousRouteCoordinates.forEach { routePath?.add($0) }
         route?.path = routePath
-        setCameraPosition(coordinate: previousRouteCoordinates.last ?? CLLocationCoordinate2D())
+        let firstCoord = previousRouteCoordinates.first ?? CLLocationCoordinate2D()
+        let lastCoord = previousRouteCoordinates.last ?? CLLocationCoordinate2D()
+        let bounds = GMSCoordinateBounds(coordinate: firstCoord, coordinate: lastCoord)
+        let camera = mapView.camera(for: bounds,
+                                    insets: UIEdgeInsets(top: 50,
+                                                         left: 50,
+                                                         bottom: 50,
+                                                         right: 50)) ?? GMSCameraPosition()
+        mapView.camera = camera
     }
     
     #warning("TODO: Вынести в AlertDirector")
@@ -220,7 +215,7 @@ final class MapViewController: UIViewController {
         alertBuilder.addMessage(message)
         alertBuilder.addDestructiveAction("Ok", isPreferredAction: false) { [weak self] _ in
             self?.isTrackingUpdatingLocation = false
-            self?.locationManager?.stopUpdatingLocation()
+            self?.locationManager.stopUpdatingLocation()
             self?.showPreviousRouteIfTrackingIsOff()
         }
         alertBuilder.addCancelAction("Cancel", isPreferredAction: true, handler: nil)
