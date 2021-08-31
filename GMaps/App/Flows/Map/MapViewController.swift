@@ -96,8 +96,8 @@ final class MapViewController: UIViewController {
         view.addSubview(mapView)
 
         trackingButton.tintColor = .systemBlue
-        navigationItem.leftBarButtonItem = trackingButton
-        navigationItem.rightBarButtonItem = previousRouteButton
+        self.navigationItem.leftBarButtonItem = trackingButton
+        self.navigationItem.rightBarButtonItem = previousRouteButton
         
         NSLayoutConstraint.activate([
             mapView.topAnchor.constraint(equalTo: view.topAnchor),

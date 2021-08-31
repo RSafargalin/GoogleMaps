@@ -2,7 +2,7 @@
 //  RoutePath+CoreDataProperties.swift
 //  
 //
-//  Created by Ruslan Safargalin on 25.08.2021.
+//  Created by Ruslan Safargalin on 27.08.2021.
 //
 //
 
