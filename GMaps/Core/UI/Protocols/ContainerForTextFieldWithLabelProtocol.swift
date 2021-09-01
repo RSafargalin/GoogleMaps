@@ -19,6 +19,7 @@ protocol ContainerForTextFieldWithLabelProtocol: UIView {
     func shake() -> Void
     func setText(_ text: String) -> Void
     func isSecureTextField(_ value: Bool)
+    func autoCorrection(_ value: UITextAutocorrectionType)
     
     init(with title: Title, and placeholder: Placeholder)
 }

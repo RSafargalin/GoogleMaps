@@ -52,6 +52,10 @@ class DefaultContainerForTextFieldWithLabel: UIView, ContainerForTextFieldWithLa
         textField.isSecureTextEntry = value
     }
     
+    func autoCorrection(_ value: UITextAutocorrectionType = .default) {
+        textField.autocorrectionType = value
+    }
+    
     // MARK: - Private methods
     
     private func setup(label text: String = "Undefined", with placeholder: String = "Placeholder...") {
