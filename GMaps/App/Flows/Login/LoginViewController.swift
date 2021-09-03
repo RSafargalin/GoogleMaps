@@ -7,6 +7,8 @@
 
 import Foundation
 import UIKit
+import RxSwift
+import RxCocoa
 
 final class LoginViewController: UITextFieldsViewController {
     
@@ -53,7 +55,20 @@ final class LoginViewController: UITextFieldsViewController {
         
         self.navigationItem.rightBarButtonItem = goToSignUpBarButtonItem
         
-        contentView.signInButton.addTarget(self, action: #selector(signIn), for: .touchUpInside)
+        let signInButton = contentView.signInButton
+        
+        signInButton.addTarget(self, action: #selector(signIn), for: .touchUpInside)
+        
+        Observable
+            .combineLatest(contentView.usernameContainerView.textField.rx.text,
+                           contentView.passwordContainerView.textField.rx.text)
+            .map { login, password in
+                return !(login ?? "").isEmpty && (password ?? "").count >= 1
+            }
+            .bind(onNext: { [weak signInButton] inputFilled in
+                signInButton?.set(.onBool(value: inputFilled))
+            })
+        
         super.setup()
         
     }

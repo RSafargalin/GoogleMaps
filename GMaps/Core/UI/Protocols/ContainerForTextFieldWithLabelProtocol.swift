@@ -13,6 +13,8 @@ protocol ContainerForTextFieldWithLabelProtocol: UIView {
     typealias Title = String
     typealias Placeholder = String
     
+    var textField: UITextField { get }
+    
     func setTitle(_ text: Title) -> Void
     func setPlaceholder(_ text: Placeholder) -> Void
     func getText() -> String?
