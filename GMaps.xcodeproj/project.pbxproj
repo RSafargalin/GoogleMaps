@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		92C4FC8F5772848DD254B7F3 /* Pods_GMaps.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DE9B4CB0E2285ACE00110870 /* Pods_GMaps.framework */; };
+		FE1CD1B926E22DF50063DE74 /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE1CD1B826E22DF50063DE74 /* MapView.swift */; };
 		FE319EF926D8E52000FB63FC /* GMapsModels.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = FE319EF726D8E52000FB63FC /* GMapsModels.xcdatamodeld */; };
 		FE319F0726D8EF3E00FB63FC /* ExNSPredicate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE319F0626D8EF3E00FB63FC /* ExNSPredicate.swift */; };
 		FE319F0A26D8F91F00FB63FC /* UserManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE319F0926D8F91F00FB63FC /* UserManager.swift */; };
@@ -37,6 +38,7 @@
 		64D086401451CEC298E2AFCF /* Pods-GMaps.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GMaps.debug.xcconfig"; path = "Target Support Files/Pods-GMaps/Pods-GMaps.debug.xcconfig"; sourceTree = "<group>"; };
 		7C78B0C36A1FF3A779E0DFF4 /* Pods-GMaps.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GMaps.release.xcconfig"; path = "Target Support Files/Pods-GMaps/Pods-GMaps.release.xcconfig"; sourceTree = "<group>"; };
 		DE9B4CB0E2285ACE00110870 /* Pods_GMaps.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GMaps.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		FE1CD1B826E22DF50063DE74 /* MapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
 		FE319EF826D8E52000FB63FC /* GMapsModels.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = GMapsModels.xcdatamodel; sourceTree = "<group>"; };
 		FE319F0626D8EF3E00FB63FC /* ExNSPredicate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExNSPredicate.swift; sourceTree = "<group>"; };
 		FE319F0926D8F91F00FB63FC /* UserManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserManager.swift; sourceTree = "<group>"; };
@@ -222,6 +224,7 @@
 			isa = PBXGroup;
 			children = (
 				FE86172C26CD44EB001F6D38 /* MapViewController.swift */,
+				FE1CD1B826E22DF50063DE74 /* MapView.swift */,
 			);
 			path = Map;
 			sourceTree = "<group>";
@@ -282,6 +285,7 @@
 				FE86170C26CD4383001F6D38 /* Frameworks */,
 				FE86170D26CD4383001F6D38 /* Resources */,
 				9BF53D3D6B7061846E1FE370 /* [CP] Copy Pods Resources */,
+				5B1F679E773EE5D982660711 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -337,6 +341,23 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		5B1F679E773EE5D982660711 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-GMaps/Pods-GMaps-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-GMaps/Pods-GMaps-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-GMaps/Pods-GMaps-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		9BF53D3D6B7061846E1FE370 /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -386,6 +407,7 @@
 				FE319F0D26D915E700FB63FC /* LoginViewController.swift in Sources */,
 				FE319F1926D9177300FB63FC /* Constant.swift in Sources */,
 				FE319F1F26D9183F00FB63FC /* ExUIButton.swift in Sources */,
+				FE1CD1B926E22DF50063DE74 /* MapView.swift in Sources */,
 				FE86171326CD4383001F6D38 /* AppDelegate.swift in Sources */,
 				FE319F1726D9172C00FB63FC /* ExUITextField.swift in Sources */,
 				FE319F0726D8EF3E00FB63FC /* ExNSPredicate.swift in Sources */,

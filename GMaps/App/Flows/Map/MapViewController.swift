@@ -10,22 +10,17 @@ import UIKit
 import GoogleMaps
 import CoreLocation
 import CoreData
+import RxSwift
 
 final class MapViewController: UIViewController {
     
     // MARK: - Private variables
     
-    private lazy var mapView: GMSMapView = {
-        let mapView = GMSMapView()
-        mapView.translatesAutoresizingMaskIntoConstraints = false
-        return mapView
-    }()
-    
-    #warning("TODO: Рефакторинг")
     private var markers = [GMSMarker]()
     private var coordinates = [CLLocationCoordinate2D]()
     private var route: GMSPolyline?
     private var routePath: GMSMutablePath?
+    private let disposeBag = DisposeBag()
     
     private var isTrackingUpdatingLocation: Bool = false {
         willSet {
@@ -33,7 +28,11 @@ final class MapViewController: UIViewController {
         }
     }
     
-    private lazy var locationManager: LocationManager = LocationManagerImpl(delegate: self)
+    private var contentView: MapView {
+        return transformView(to: MapView.self)
+    }
+    
+    private let locationManager: LocationManager = LocationManager.instance
     private let dataBaseManager: DataBaseManager = CoreDataManager()
     private let alertBuilder: AlertBuilder = AlertBuilderImpl()
     
@@ -73,6 +72,10 @@ final class MapViewController: UIViewController {
     
     // MARK: - Life cycle
     
+    override func loadView() {
+        view = MapView()
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setup()
@@ -80,81 +83,39 @@ final class MapViewController: UIViewController {
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        
         stopFetchingUserLocationUpdate()
-        locationManager.stopMonitoringSignificantLocationChanges()
-        locationManager.unbindDelegate()
-        
     }
     
     // MARK: - Private methods
     
-    #warning("TODO: Вынести в отдельную View")
-    private func configureUI() {
+    private func setup() {
+        
         self.title = "Map"
-        view.backgroundColor = .systemBackground
-        view.addSubview(mapView)
-
+        
         trackingButton.tintColor = .systemBlue
         self.navigationItem.leftBarButtonItem = trackingButton
         self.navigationItem.rightBarButtonItem = previousRouteButton
-        
-        NSLayoutConstraint.activate([
-            mapView.topAnchor.constraint(equalTo: view.topAnchor),
-            mapView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            mapView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            mapView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
-        ])
-    }
-    
-    private func setup() {
-        configureUI()
-        locationManager.configure()
-        locationManager.requestAuthorizationIfNeeded()
-        locationManager.startMonitoringSignificantLocationChanges()
+        locationManager.requestAuthorizationIfNeeded(for: self)
         
         previousRouteCoordinates = dataBaseManager.fetchLastRouteCoordinate()
+     
+        locationManager.location
+                       .asObservable()
+                       .bind { [weak self] location in
+                           guard let location = location else { return }
+                           self?.routePath?.add(location.coordinate)
+                           self?.route?.path = self?.routePath
+                           self?.setCameraPosition(coordinate: location.coordinate)
+                       }
+                       .disposed(by: disposeBag)
     }
     
-    #warning("TODO: Вынести в LocationManager")
-    private func setCameraPosition(coordinate: CLLocationCoordinate2D, zoom: Float = 17.0, animated: Bool = false) {
-        let camera = GMSCameraPosition(latitude: coordinate.latitude,
-                                       longitude: coordinate.longitude,
-                                       zoom: zoom)
-        guard animated else {
-            mapView.camera = camera
-            return
-        }
-        mapView.animate(to: camera)
-    }
-    
-    #warning("TODO: Вынести в LocationManager")
-    private func setMarkerOnMap(for coordinate: CLLocationCoordinate2D) {
-        let newMarker = GMSMarker(position: coordinate)
-        newMarker.map = mapView
-        
-        markers.append(newMarker)
-    }
-    
-    #warning("TODO: Вынести в LocationManager")
-    private func clearMap() {
-        removeMarkers()
-    }
-    
-    #warning("TODO: Вынести в LocationManager")
-    private func removeMarkers() {
-        markers.forEach { marker in
-            marker.map = nil
-        }
-    }
-    
-    #warning("TODO: Рефакторинг")
     private func startFetchingUserLocationUpdate() {
         isTrackingUpdatingLocation = true
         route?.map = nil
         route = GMSPolyline()
         routePath = GMSMutablePath()
-        route?.map = mapView
+        route?.map = contentView.mapView
         locationManager.startUpdatingLocation()
     }
     
@@ -165,12 +126,12 @@ final class MapViewController: UIViewController {
         
         do {
             try dataBaseManager.saveRoute(with: coordinates)
+            previousRouteCoordinates = coordinates
         } catch {
             print(error)
         }
     }
     
-    #warning("TODO: Вынести в LocationManager")
     private func fetchCoordinates(from routePath: GMSMutablePath?) -> [CLLocationCoordinate2D] {
         guard let routePath = routePath else { return [] }
         
@@ -185,28 +146,25 @@ final class MapViewController: UIViewController {
         return coordinates
     }
     
-    #warning("TODO: Вынести в LocationManager")
-    #warning("TODO: Рефакторинг")
     private func showPreviousRouteIfTrackingIsOff() {
         guard !isTrackingUpdatingLocation else { return }
         route?.map = nil
         route = GMSPolyline()
         routePath = GMSMutablePath()
-        route?.map = mapView
+        route?.map = contentView.mapView
         previousRouteCoordinates.forEach { routePath?.add($0) }
         route?.path = routePath
         let firstCoord = previousRouteCoordinates.first ?? CLLocationCoordinate2D()
         let lastCoord = previousRouteCoordinates.last ?? CLLocationCoordinate2D()
         let bounds = GMSCoordinateBounds(coordinate: firstCoord, coordinate: lastCoord)
-        let camera = mapView.camera(for: bounds,
+        let camera = contentView.mapView.camera(for: bounds,
                                     insets: UIEdgeInsets(top: 50,
                                                          left: 50,
                                                          bottom: 50,
                                                          right: 50)) ?? GMSCameraPosition()
-        mapView.camera = camera
+        contentView.mapView.camera = camera
     }
     
-    #warning("TODO: Вынести в AlertDirector")
     private func buildActiveTrackingAlert() -> UIAlertController {
         let title = "Warning!"
         let message = "You are tracking location updates.\nWhen you click \"Ok\", the current route will be discarded"
@@ -236,24 +194,15 @@ final class MapViewController: UIViewController {
             trackingButton.action = #selector(onStartTrackingButtonDidTap(_:))
         }
     }
-}
-
-// MARK: - MapViewController + CLLocationManagerDelegate
-
-extension MapViewController: CLLocationManagerDelegate {
     
-    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        
-        guard isTrackingUpdatingLocation,
-              let currentCoordinate = locations.first?.coordinate
-        else { return }
-        setCameraPosition(coordinate: currentCoordinate, animated: true)
-        routePath?.add(currentCoordinate)
-        route?.path = routePath
+    private func setCameraPosition(coordinate: CLLocationCoordinate2D, zoom: Float = 17.0, animated: Bool = false) {
+        let camera = GMSCameraPosition(latitude: coordinate.latitude,
+                                       longitude: coordinate.longitude,
+                                       zoom: zoom)
+        guard animated else {
+            contentView.mapView.camera = camera
+            return
+        }
+        contentView.mapView.animate(to: camera)
     }
-    
-    func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
-        print(error)
-    }
-    
 }
