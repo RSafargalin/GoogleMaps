@@ -16,6 +16,7 @@ final class LoginViewController: UITextFieldsViewController {
     
     private lazy var router: Router = RouterImpl(delegate: self)
     private let userManager: UserManager = UserManagerImpl()
+    private let disposeBag: DisposeBag = DisposeBag()
     
     private lazy var goToSignUpBarButtonItem = UIBarButtonItem(title: "Sign Up",
                                                                style: .plain,
@@ -63,11 +64,18 @@ final class LoginViewController: UITextFieldsViewController {
             .combineLatest(contentView.usernameContainerView.textField.rx.text,
                            contentView.passwordContainerView.textField.rx.text)
             .map { login, password in
-                return !(login ?? "").isEmpty && (password ?? "").count >= 1
+                guard let safeLogin = login,
+                      !safeLogin.isEmpty,
+                      
+                      let safePassword = password,
+                      safePassword.count >= 1
+                else { return false }
+                
+                return true
             }
             .bind(onNext: { [weak signInButton] inputFilled in
                 signInButton?.set(.onBool(value: inputFilled))
-            })
+            }).disposed(by: disposeBag)
         
         super.setup()
         
