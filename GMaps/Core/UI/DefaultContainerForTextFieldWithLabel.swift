@@ -13,7 +13,7 @@ class DefaultContainerForTextFieldWithLabel: UIView, ContainerForTextFieldWithLa
     // MARK: - Private property
     
     private let label: UILabel = UILabel()
-    private let textField: UITextField = UITextField()
+    let textField: UITextField = UITextField()
     
     // MARK: - Init
     
@@ -50,6 +50,10 @@ class DefaultContainerForTextFieldWithLabel: UIView, ContainerForTextFieldWithLa
     
     func isSecureTextField(_ value: Bool) {
         textField.isSecureTextEntry = value
+    }
+    
+    func autoCorrection(_ value: UITextAutocorrectionType = .default) {
+        textField.autocorrectionType = value
     }
     
     // MARK: - Private methods

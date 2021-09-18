@@ -14,7 +14,8 @@ extension UIButton {
     
     enum ButtonState {
         case enabled,
-             disabled
+             disabled,
+             onBool(value: Bool)
     }
     
     // MARK: Public methods
@@ -35,6 +36,12 @@ extension UIButton {
             DispatchQueue.main.async {
                 self.isEnabled = false
                 self.backgroundColor = .darkGray
+            }
+        
+        case .onBool(value: let value):
+            DispatchQueue.main.async {
+                self.isEnabled = value
+                self.backgroundColor = value ? .systemOrange : .darkGray
             }
         }
         

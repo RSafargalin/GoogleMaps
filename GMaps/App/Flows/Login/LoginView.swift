@@ -59,6 +59,8 @@ final class LoginView: UIView, ContentView {
         stackView.addArrangedSubview(passwordContainerView)
         stackView.addArrangedSubview(signInButton)
     
+        usernameContainerView.autoCorrection(.no)
+        passwordContainerView.autoCorrection(.no)
         passwordContainerView.isSecureTextField(true)
         
         signInButton.setTitle("Join", for: .normal)
