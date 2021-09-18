@@ -8,52 +8,39 @@
 import Foundation
 import CoreLocation
 import GoogleMaps
+import RxCocoa
 
-protocol LocationManager: AnyObject {
+final class LocationManager: NSObject {
     
-    func requestAuthorizationIfNeeded()
-    func unbindDelegate()
-    func configure()
-    func startUpdatingLocation()
-    func stopUpdatingLocation()
-    func startMonitoringSignificantLocationChanges()
-    func stopMonitoringSignificantLocationChanges()
-    
-}
-
-final class LocationManagerImpl: LocationManager {
-    
-    typealias LocationManagerDelegate = (UIViewController & CLLocationManagerDelegate)
-    
-    // MARK: - Private variables
-    
-    #warning("TODO: Удалить, если не будет необходимости")
-    private weak var delegate: LocationManagerDelegate?
-    
-    private var locationManager: CLLocationManager
-    private let alertBuilder: AlertBuilder = AlertBuilderImpl()
-    
-    private var route: GMSPolyline
-    private var routePath: GMSMutablePath
-    
-    private var markers: [GMSMarker] = [GMSMarker]()
-    private var coordinates: [CLLocationCoordinate2D] = [CLLocationCoordinate2D]()
+    static let instance = LocationManager()
     
     // MARK: - Init
     
-    init(delegate: LocationManagerDelegate) {
-        
-        #warning("TODO: Удалить, если не будет необходимости")
-        self.delegate = delegate
-        self.locationManager = CLLocationManager()
-        self.locationManager.delegate = delegate
-        self.route = GMSPolyline()
-        self.routePath = GMSMutablePath()
+    private override init() {
+        super.init()
+        configureLocationManager()
     }
-
+    
+    // MARK: - Private variables
+    
+    private let alertBuilder: AlertBuilder = AlertBuilderImpl()
+    
+    // MARK: - Public variables
+    
+    let locationManager = CLLocationManager()
+    let location: BehaviorRelay<CLLocation?> = .init(value: nil)
+    
     // MARK: - Public methods
     
-    public func requestAuthorizationIfNeeded() {
+    func startUpdatingLocation() {
+        locationManager.startUpdatingLocation()
+    }
+    
+    func stopUpdatingLocation() {
+        locationManager.stopUpdatingLocation()
+    }
+    
+    public func requestAuthorizationIfNeeded(for controller: UIViewController) {
         switch locationManager.authorizationStatus {
         case .notDetermined:
             locationManager.requestWhenInUseAuthorization()
@@ -67,38 +54,12 @@ final class LocationManagerImpl: LocationManager {
             
         case .denied, .restricted:
             let alertController = buildWarningAboutNoAccessToGeolocationServices()
-            delegate?.present(alertController, animated: true, completion: nil)
+            controller.present(alertController, animated: true, completion: nil)
             
         @unknown default:
             break
             // TODO: Обработать правильно
         }
-    }
-    
-    public func unbindDelegate() {
-        self.delegate = nil
-        self.locationManager.delegate = nil
-    }
-    
-    public func configure() {
-        locationManager.allowsBackgroundLocationUpdates = true
-        locationManager.pausesLocationUpdatesAutomatically = false
-    }
-    
-    public func startMonitoringSignificantLocationChanges() {
-        locationManager.startMonitoringSignificantLocationChanges()
-    }
-    
-    public func stopMonitoringSignificantLocationChanges() {
-        locationManager.stopMonitoringSignificantLocationChanges()
-    }
-    
-    public func startUpdatingLocation() {
-        locationManager.startUpdatingLocation()
-    }
-    
-    public func stopUpdatingLocation() {
-        locationManager.stopUpdatingLocation()
     }
     
     // MARK: - Private methods
@@ -119,4 +80,59 @@ final class LocationManagerImpl: LocationManager {
         return alertController
     }
     
+    private func configureLocationManager() {
+        locationManager.delegate = self
+        locationManager.allowsBackgroundLocationUpdates = true
+        locationManager.pausesLocationUpdatesAutomatically = false
+        locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
+        locationManager.startMonitoringSignificantLocationChanges()
+        locationManager.requestAlwaysAuthorization()
+    }
+    
 }
+
+extension LocationManager: CLLocationManagerDelegate {
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        self.location.accept(locations.last)
+    }
+    
+    func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
+        print(error)
+    }
+}
+
+// MARK: - Refactoring
+// TODO: Переписать методы
+/*
+ #warning("TODO: Вынести в LocationManager")
+ private func setCameraPosition(coordinate: CLLocationCoordinate2D, zoom: Float = 17.0, animated: Bool = false) {
+     let camera = GMSCameraPosition(latitude: coordinate.latitude,
+                                    longitude: coordinate.longitude,
+                                    zoom: zoom)
+     guard animated else {
+         contentView.mapView.camera = camera
+         return
+     }
+     contentView.mapView.animate(to: camera)
+ }
+ 
+ #warning("TODO: Вынести в LocationManager")
+ private func setMarkerOnMap(for coordinate: CLLocationCoordinate2D) {
+     let newMarker = GMSMarker(position: coordinate)
+     newMarker.map = contentView.mapView
+     
+     markers.append(newMarker)
+ }
+ 
+ #warning("TODO: Вынести в LocationManager")
+ private func clearMap() {
+     removeMarkers()
+ }
+ 
+ #warning("TODO: Вынести в LocationManager")
+ private func removeMarkers() {
+     markers.forEach { marker in
+         marker.map = nil
+     }
+ }
+ */

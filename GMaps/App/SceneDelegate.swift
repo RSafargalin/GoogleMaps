@@ -9,20 +9,23 @@ import UIKit
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
+    // MARK: - Public variables
+    
     var window: UIWindow?
 
+    // MARK: - Private variables
+    
+    private var visualEffectView: UIVisualEffectView? = nil
+    private let curtainViewTag: Int = 1
+    
+    // MARK: - Public methods
 
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         guard let windowScene = (scene as? UIWindowScene) else { return }
         
         let window = UIWindow(windowScene: windowScene)
         
-        let viewController = MapViewController()
-        let navController = UINavigationController(rootViewController: viewController)
-        let tabBarController = UITabBarController(nibName: nil, bundle: nil)
-        tabBarController.setViewControllers([navController], animated: false)
-        
-        window.rootViewController = tabBarController
+        window.rootViewController = .login()
         
         self.window = window
         window.makeKeyAndVisible()
@@ -36,13 +39,13 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     }
 
     func sceneDidBecomeActive(_ scene: UIScene) {
-        // Called when the scene has moved from an inactive state to an active state.
-        // Use this method to restart any tasks that were paused (or not yet started) when the scene was inactive.
+        if let controller = self.window?.rootViewController {
+            removeCurtainIfNeeded(from: controller)
+        }
     }
 
     func sceneWillResignActive(_ scene: UIScene) {
-        // Called when the scene will move from an active state to an inactive state.
-        // This may occur due to temporary interruptions (ex. an incoming phone call).
+        addCurtainIfNeeded()
     }
 
     func sceneWillEnterForeground(_ scene: UIScene) {
@@ -55,7 +58,66 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // Use this method to save data, release shared resources, and store enough scene-specific state information
         // to restore the scene back to its current state.
     }
-
+    
+    private func addCurtainIfNeeded() {
+        
+        if let navigationController = self.window?.rootViewController as? UINavigationController {
+            
+            guard let lastController = navigationController.children.last else { return }
+            
+            removeCurtainIfNeeded(from: lastController)
+            
+            if visualEffectView == nil {
+                visualEffectView = fetchBlurView(for: curtainViewTag, frame: UIScreen.main.bounds)
+            }
+            
+            guard let curtainView = visualEffectView else { return }
+            
+            lastController.view.insertSubview(curtainView, at: lastController.view.subviews.count)
+            
+        } else if let controller = self.window?.rootViewController {
+            
+            removeCurtainIfNeeded(from: controller)
+            
+            if visualEffectView == nil {
+                visualEffectView = fetchBlurView(for: curtainViewTag, frame: UIScreen.main.bounds)
+            }
+            
+            guard let curtainView = visualEffectView else { return }
+            
+            controller.view.insertSubview(curtainView, at: controller.view.subviews.count)
+        
+        }
+    }
+    
+    private func removeCurtainIfNeeded(from controller: UIViewController) {
+       
+        
+        if let navigationController = controller as? UINavigationController {
+            
+            guard let lastController = navigationController.children.last else { return }
+            
+            if let curtainView = lastController.view.subviews.first(where: {$0.tag == curtainViewTag}){
+                curtainView.removeFromSuperview()
+                visualEffectView = nil
+            }
+            
+        } else {
+            
+            if let curtainView = controller.view.subviews.first(where: {$0.tag == curtainViewTag}){
+                curtainView.removeFromSuperview()
+                visualEffectView = nil
+            }
+        
+        }
+    }
+    
+    private func fetchBlurView(for tag: Int, frame size: CGRect) -> UIVisualEffectView {
+        let blurView = UIVisualEffectView(frame: size)
+        blurView.effect = UIBlurEffect(style: .light)
+        blurView.tag = tag
+        return blurView
+    }
 
 }
 

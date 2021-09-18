@@ -3,7 +3,12 @@
     <entity name="RoutePath" representedClassName=".RoutePath" syncable="YES" codeGenerationType="class">
         <attribute name="coordinates" attributeType="Transformable" valueTransformerName="CLLocationCoordinate2DTransformer" customClassName=".[CLLocationCoordinate2D]"/>
     </entity>
+    <entity name="User" representedClassName=".User" syncable="YES">
+        <attribute name="login" attributeType="String" defaultValueString=""/>
+        <attribute name="password" attributeType="String" defaultValueString=""/>
+    </entity>
     <elements>
         <element name="RoutePath" positionX="-36" positionY="9" width="128" height="44"/>
+        <element name="User" positionX="-31.01416015625" positionY="94.99874877929688" width="128" height="73"/>
     </elements>
 </model>
