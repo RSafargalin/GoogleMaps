@@ -8,18 +8,49 @@
 
 /* Begin PBXBuildFile section */
 		92C4FC8F5772848DD254B7F3 /* Pods_GMaps.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DE9B4CB0E2285ACE00110870 /* Pods_GMaps.framework */; };
+		FE1CD1B926E22DF50063DE74 /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE1CD1B826E22DF50063DE74 /* MapView.swift */; };
+		FE319EF926D8E52000FB63FC /* GMapsModels.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = FE319EF726D8E52000FB63FC /* GMapsModels.xcdatamodeld */; };
+		FE319F0726D8EF3E00FB63FC /* ExNSPredicate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE319F0626D8EF3E00FB63FC /* ExNSPredicate.swift */; };
+		FE319F0A26D8F91F00FB63FC /* UserManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE319F0926D8F91F00FB63FC /* UserManager.swift */; };
+		FE319F0D26D915E700FB63FC /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE319F0C26D915E700FB63FC /* LoginViewController.swift */; };
+		FE319F0F26D9168E00FB63FC /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE319F0E26D9168E00FB63FC /* LoginView.swift */; };
+		FE319F1226D916DC00FB63FC /* ContainerForTextFieldWithLabelProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE319F1126D916DC00FB63FC /* ContainerForTextFieldWithLabelProtocol.swift */; };
+		FE319F1526D9170600FB63FC /* DefaultContainerForTextFieldWithLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE319F1426D9170600FB63FC /* DefaultContainerForTextFieldWithLabel.swift */; };
+		FE319F1726D9172C00FB63FC /* ExUITextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE319F1626D9172C00FB63FC /* ExUITextField.swift */; };
+		FE319F1926D9177300FB63FC /* Constant.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE319F1826D9177300FB63FC /* Constant.swift */; };
+		FE319F1B26D917D500FB63FC /* ExUIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE319F1A26D917D500FB63FC /* ExUIViewController.swift */; };
+		FE319F1D26D917FD00FB63FC /* UITextFieldsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE319F1C26D917FD00FB63FC /* UITextFieldsViewController.swift */; };
+		FE319F1F26D9183F00FB63FC /* ExUIButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE319F1E26D9183F00FB63FC /* ExUIButton.swift */; };
 		FE86171326CD4383001F6D38 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE86171226CD4383001F6D38 /* AppDelegate.swift */; };
 		FE86171526CD4383001F6D38 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE86171426CD4383001F6D38 /* SceneDelegate.swift */; };
 		FE86171C26CD4385001F6D38 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FE86171B26CD4385001F6D38 /* Assets.xcassets */; };
 		FE86171F26CD4385001F6D38 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FE86171D26CD4385001F6D38 /* LaunchScreen.storyboard */; };
 		FE86172D26CD44EB001F6D38 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE86172C26CD44EB001F6D38 /* MapViewController.swift */; };
 		FE86173126CD47B5001F6D38 /* SecretConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE86173026CD47B5001F6D38 /* SecretConstants.swift */; };
+		FE86175C26D4FF89001F6D38 /* CLLocationCoordinate2DTransformer.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE86175B26D4FF89001F6D38 /* CLLocationCoordinate2DTransformer.swift */; };
+		FE86175E26D50E57001F6D38 /* DataBaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE86175D26D50E57001F6D38 /* DataBaseManager.swift */; };
+		FE86176026D5209A001F6D38 /* AlertBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE86175F26D5209A001F6D38 /* AlertBuilder.swift */; };
+		FE86176526D65F85001F6D38 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE86176426D65F85001F6D38 /* LocationManager.swift */; };
+		FE9DDB7A26DA2D4F00A4280B /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE9DDB7926DA2D4F00A4280B /* Router.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		64D086401451CEC298E2AFCF /* Pods-GMaps.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GMaps.debug.xcconfig"; path = "Target Support Files/Pods-GMaps/Pods-GMaps.debug.xcconfig"; sourceTree = "<group>"; };
 		7C78B0C36A1FF3A779E0DFF4 /* Pods-GMaps.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GMaps.release.xcconfig"; path = "Target Support Files/Pods-GMaps/Pods-GMaps.release.xcconfig"; sourceTree = "<group>"; };
 		DE9B4CB0E2285ACE00110870 /* Pods_GMaps.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GMaps.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		FE1CD1B826E22DF50063DE74 /* MapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
+		FE319EF826D8E52000FB63FC /* GMapsModels.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = GMapsModels.xcdatamodel; sourceTree = "<group>"; };
+		FE319F0626D8EF3E00FB63FC /* ExNSPredicate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExNSPredicate.swift; sourceTree = "<group>"; };
+		FE319F0926D8F91F00FB63FC /* UserManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserManager.swift; sourceTree = "<group>"; };
+		FE319F0C26D915E700FB63FC /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		FE319F0E26D9168E00FB63FC /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
+		FE319F1126D916DC00FB63FC /* ContainerForTextFieldWithLabelProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContainerForTextFieldWithLabelProtocol.swift; sourceTree = "<group>"; };
+		FE319F1426D9170600FB63FC /* DefaultContainerForTextFieldWithLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultContainerForTextFieldWithLabel.swift; sourceTree = "<group>"; };
+		FE319F1626D9172C00FB63FC /* ExUITextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExUITextField.swift; sourceTree = "<group>"; };
+		FE319F1826D9177300FB63FC /* Constant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constant.swift; sourceTree = "<group>"; };
+		FE319F1A26D917D500FB63FC /* ExUIViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExUIViewController.swift; sourceTree = "<group>"; };
+		FE319F1C26D917FD00FB63FC /* UITextFieldsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITextFieldsViewController.swift; sourceTree = "<group>"; };
+		FE319F1E26D9183F00FB63FC /* ExUIButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExUIButton.swift; sourceTree = "<group>"; };
 		FE86170F26CD4383001F6D38 /* GMaps.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GMaps.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FE86171226CD4383001F6D38 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FE86171426CD4383001F6D38 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -28,6 +59,11 @@
 		FE86172026CD4385001F6D38 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		FE86172C26CD44EB001F6D38 /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		FE86173026CD47B5001F6D38 /* SecretConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SecretConstants.swift; sourceTree = "<group>"; };
+		FE86175B26D4FF89001F6D38 /* CLLocationCoordinate2DTransformer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CLLocationCoordinate2DTransformer.swift; sourceTree = "<group>"; };
+		FE86175D26D50E57001F6D38 /* DataBaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataBaseManager.swift; sourceTree = "<group>"; };
+		FE86175F26D5209A001F6D38 /* AlertBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertBuilder.swift; sourceTree = "<group>"; };
+		FE86176426D65F85001F6D38 /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
+		FE9DDB7926DA2D4F00A4280B /* Router.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Router.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -57,6 +93,52 @@
 				DE9B4CB0E2285ACE00110870 /* Pods_GMaps.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		FE319F0526D8EF2D00FB63FC /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				FE319F0626D8EF3E00FB63FC /* ExNSPredicate.swift */,
+				FE319F1626D9172C00FB63FC /* ExUITextField.swift */,
+				FE319F1A26D917D500FB63FC /* ExUIViewController.swift */,
+				FE319F1E26D9183F00FB63FC /* ExUIButton.swift */,
+			);
+			path = Extension;
+			sourceTree = "<group>";
+		};
+		FE319F0826D8F91700FB63FC /* User */ = {
+			isa = PBXGroup;
+			children = (
+				FE319F0926D8F91F00FB63FC /* UserManager.swift */,
+			);
+			path = User;
+			sourceTree = "<group>";
+		};
+		FE319F0B26D915D000FB63FC /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				FE319F0C26D915E700FB63FC /* LoginViewController.swift */,
+				FE319F0E26D9168E00FB63FC /* LoginView.swift */,
+			);
+			path = Login;
+			sourceTree = "<group>";
+		};
+		FE319F1026D916D000FB63FC /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				FE319F1326D916E800FB63FC /* Protocols */,
+				FE319F1426D9170600FB63FC /* DefaultContainerForTextFieldWithLabel.swift */,
+				FE319F1C26D917FD00FB63FC /* UITextFieldsViewController.swift */,
+			);
+			path = UI;
+			sourceTree = "<group>";
+		};
+		FE319F1326D916E800FB63FC /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				FE319F1126D916DC00FB63FC /* ContainerForTextFieldWithLabelProtocol.swift */,
+			);
+			path = Protocols;
 			sourceTree = "<group>";
 		};
 		FE86170626CD4383001F6D38 = {
@@ -112,6 +194,7 @@
 				FE86171B26CD4385001F6D38 /* Assets.xcassets */,
 				FE86171D26CD4385001F6D38 /* LaunchScreen.storyboard */,
 				FE86173026CD47B5001F6D38 /* SecretConstants.swift */,
+				FE319F1826D9177300FB63FC /* Constant.swift */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -119,6 +202,11 @@
 		FE86172926CD4492001F6D38 /* Core */ = {
 			isa = PBXGroup;
 			children = (
+				FE9DDB7826DA2D1600A4280B /* Router */,
+				FE319F1026D916D000FB63FC /* UI */,
+				FE319F0526D8EF2D00FB63FC /* Extension */,
+				FE86176226D65E6A001F6D38 /* Managers */,
+				FE86176126D5209F001F6D38 /* Builders */,
 			);
 			path = Core;
 			sourceTree = "<group>";
@@ -126,6 +214,7 @@
 		FE86172A26CD449B001F6D38 /* Flows */ = {
 			isa = PBXGroup;
 			children = (
+				FE319F0B26D915D000FB63FC /* Login */,
 				FE86172B26CD44E3001F6D38 /* Map */,
 			);
 			path = Flows;
@@ -135,8 +224,53 @@
 			isa = PBXGroup;
 			children = (
 				FE86172C26CD44EB001F6D38 /* MapViewController.swift */,
+				FE1CD1B826E22DF50063DE74 /* MapView.swift */,
 			);
 			path = Map;
+			sourceTree = "<group>";
+		};
+		FE86175526D4F817001F6D38 /* CoreData */ = {
+			isa = PBXGroup;
+			children = (
+				FE86175B26D4FF89001F6D38 /* CLLocationCoordinate2DTransformer.swift */,
+				FE86175D26D50E57001F6D38 /* DataBaseManager.swift */,
+				FE319EF726D8E52000FB63FC /* GMapsModels.xcdatamodeld */,
+			);
+			path = CoreData;
+			sourceTree = "<group>";
+		};
+		FE86176126D5209F001F6D38 /* Builders */ = {
+			isa = PBXGroup;
+			children = (
+				FE86175F26D5209A001F6D38 /* AlertBuilder.swift */,
+			);
+			path = Builders;
+			sourceTree = "<group>";
+		};
+		FE86176226D65E6A001F6D38 /* Managers */ = {
+			isa = PBXGroup;
+			children = (
+				FE319F0826D8F91700FB63FC /* User */,
+				FE86176326D65E80001F6D38 /* Location */,
+				FE86175526D4F817001F6D38 /* CoreData */,
+			);
+			path = Managers;
+			sourceTree = "<group>";
+		};
+		FE86176326D65E80001F6D38 /* Location */ = {
+			isa = PBXGroup;
+			children = (
+				FE86176426D65F85001F6D38 /* LocationManager.swift */,
+			);
+			path = Location;
+			sourceTree = "<group>";
+		};
+		FE9DDB7826DA2D1600A4280B /* Router */ = {
+			isa = PBXGroup;
+			children = (
+				FE9DDB7926DA2D4F00A4280B /* Router.swift */,
+			);
+			path = Router;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -151,6 +285,7 @@
 				FE86170C26CD4383001F6D38 /* Frameworks */,
 				FE86170D26CD4383001F6D38 /* Resources */,
 				9BF53D3D6B7061846E1FE370 /* [CP] Copy Pods Resources */,
+				5B1F679E773EE5D982660711 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -206,6 +341,23 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		5B1F679E773EE5D982660711 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-GMaps/Pods-GMaps-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-GMaps/Pods-GMaps-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-GMaps/Pods-GMaps-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		9BF53D3D6B7061846E1FE370 /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -252,10 +404,28 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FE319F0D26D915E700FB63FC /* LoginViewController.swift in Sources */,
+				FE319F1926D9177300FB63FC /* Constant.swift in Sources */,
+				FE319F1F26D9183F00FB63FC /* ExUIButton.swift in Sources */,
+				FE1CD1B926E22DF50063DE74 /* MapView.swift in Sources */,
 				FE86171326CD4383001F6D38 /* AppDelegate.swift in Sources */,
+				FE319F1726D9172C00FB63FC /* ExUITextField.swift in Sources */,
+				FE319F0726D8EF3E00FB63FC /* ExNSPredicate.swift in Sources */,
+				FE319F1D26D917FD00FB63FC /* UITextFieldsViewController.swift in Sources */,
+				FE319F1B26D917D500FB63FC /* ExUIViewController.swift in Sources */,
+				FE86175C26D4FF89001F6D38 /* CLLocationCoordinate2DTransformer.swift in Sources */,
+				FE319EF926D8E52000FB63FC /* GMapsModels.xcdatamodeld in Sources */,
+				FE9DDB7A26DA2D4F00A4280B /* Router.swift in Sources */,
 				FE86172D26CD44EB001F6D38 /* MapViewController.swift in Sources */,
+				FE86176026D5209A001F6D38 /* AlertBuilder.swift in Sources */,
 				FE86171526CD4383001F6D38 /* SceneDelegate.swift in Sources */,
+				FE86175E26D50E57001F6D38 /* DataBaseManager.swift in Sources */,
+				FE319F1226D916DC00FB63FC /* ContainerForTextFieldWithLabelProtocol.swift in Sources */,
+				FE319F1526D9170600FB63FC /* DefaultContainerForTextFieldWithLabel.swift in Sources */,
 				FE86173126CD47B5001F6D38 /* SecretConstants.swift in Sources */,
+				FE319F0F26D9168E00FB63FC /* LoginView.swift in Sources */,
+				FE319F0A26D8F91F00FB63FC /* UserManager.swift in Sources */,
+				FE86176526D65F85001F6D38 /* LocationManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -451,6 +621,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		FE319EF726D8E52000FB63FC /* GMapsModels.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				FE319EF826D8E52000FB63FC /* GMapsModels.xcdatamodel */,
+			);
+			currentVersion = FE319EF826D8E52000FB63FC /* GMapsModels.xcdatamodel */;
+			path = GMapsModels.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = FE86170726CD4383001F6D38 /* Project object */;
 }

@@ -2,6 +2,18 @@
 <Workspace
    version = "1.0">
    <FileRef
+      location = "group:RoutePath+CoreDataClass.swift">
+   </FileRef>
+   <FileRef
+      location = "group:RoutePath+CoreDataProperties.swift">
+   </FileRef>
+   <FileRef
+      location = "group:User+CoreDataClass.swift">
+   </FileRef>
+   <FileRef
+      location = "group:User+CoreDataProperties.swift">
+   </FileRef>
+   <FileRef
       location = "group:GMaps.xcodeproj">
    </FileRef>
    <FileRef
