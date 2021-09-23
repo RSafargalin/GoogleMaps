@@ -17,6 +17,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     
     private var visualEffectView: UIVisualEffectView? = nil
     private let curtainViewTag: Int = 1
+    private let notificationCenter = NotificationCenterFacade.shared
     
     // MARK: - Public methods
 
@@ -26,6 +27,9 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         let window = UIWindow(windowScene: windowScene)
         
         window.rootViewController = .login()
+        
+        
+        notificationCenter.requestAccessIfNeeded()
         
         self.window = window
         window.makeKeyAndVisible()
@@ -46,6 +50,13 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     func sceneWillResignActive(_ scene: UIScene) {
         addCurtainIfNeeded()
+        let trigger = notificationCenter.makeNotificatioTriggerFor30Minutes()
+        notificationCenter.send(with: "Hey",
+                                subtitle: "",
+                                body: "Вернись! Тут кое-что интересное",
+                                badge: 1,
+                                trigger: trigger,
+                                identifier: "hey")
     }
 
     func sceneWillEnterForeground(_ scene: UIScene) {
