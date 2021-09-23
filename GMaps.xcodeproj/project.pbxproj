@@ -32,6 +32,7 @@
 		FE86176026D5209A001F6D38 /* AlertBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE86175F26D5209A001F6D38 /* AlertBuilder.swift */; };
 		FE86176526D65F85001F6D38 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE86176426D65F85001F6D38 /* LocationManager.swift */; };
 		FE9DDB7A26DA2D4F00A4280B /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE9DDB7926DA2D4F00A4280B /* Router.swift */; };
+		FEE6E7C226FC6FE700E05B25 /* NotificationCenterFacade.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEE6E7C126FC6FE700E05B25 /* NotificationCenterFacade.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -64,6 +65,7 @@
 		FE86175F26D5209A001F6D38 /* AlertBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertBuilder.swift; sourceTree = "<group>"; };
 		FE86176426D65F85001F6D38 /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
 		FE9DDB7926DA2D4F00A4280B /* Router.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Router.swift; sourceTree = "<group>"; };
+		FEE6E7C126FC6FE700E05B25 /* NotificationCenterFacade.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationCenterFacade.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -250,6 +252,7 @@
 		FE86176226D65E6A001F6D38 /* Managers */ = {
 			isa = PBXGroup;
 			children = (
+				FEE6E7C026FC6FCB00E05B25 /* NotificationCenter */,
 				FE319F0826D8F91700FB63FC /* User */,
 				FE86176326D65E80001F6D38 /* Location */,
 				FE86175526D4F817001F6D38 /* CoreData */,
@@ -271,6 +274,14 @@
 				FE9DDB7926DA2D4F00A4280B /* Router.swift */,
 			);
 			path = Router;
+			sourceTree = "<group>";
+		};
+		FEE6E7C026FC6FCB00E05B25 /* NotificationCenter */ = {
+			isa = PBXGroup;
+			children = (
+				FEE6E7C126FC6FE700E05B25 /* NotificationCenterFacade.swift */,
+			);
+			path = NotificationCenter;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -424,6 +435,7 @@
 				FE319F1526D9170600FB63FC /* DefaultContainerForTextFieldWithLabel.swift in Sources */,
 				FE86173126CD47B5001F6D38 /* SecretConstants.swift in Sources */,
 				FE319F0F26D9168E00FB63FC /* LoginView.swift in Sources */,
+				FEE6E7C226FC6FE700E05B25 /* NotificationCenterFacade.swift in Sources */,
 				FE319F0A26D8F91F00FB63FC /* UserManager.swift in Sources */,
 				FE86176526D65F85001F6D38 /* LocationManager.swift in Sources */,
 			);
