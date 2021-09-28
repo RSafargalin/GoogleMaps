@@ -21,6 +21,7 @@ final class MapViewController: UIViewController {
     private var route: GMSPolyline?
     private var routePath: GMSMutablePath?
     private let disposeBag = DisposeBag()
+    private var userLastMarker: GMSMarker? = nil
     
     private var isTrackingUpdatingLocation: Bool = false {
         willSet {
@@ -32,6 +33,7 @@ final class MapViewController: UIViewController {
         return transformView(to: MapView.self)
     }
     
+    private let userManager: UserManager = UserManagerImpl()
     private let locationManager: LocationManager = LocationManager.instance
     private let dataBaseManager: DataBaseManager = CoreDataManager()
     private let alertBuilder: AlertBuilder = AlertBuilderImpl()
@@ -81,8 +83,7 @@ final class MapViewController: UIViewController {
         setup()
     }
     
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
+    deinit {
         stopFetchingUserLocationUpdate()
     }
     
@@ -102,10 +103,11 @@ final class MapViewController: UIViewController {
         locationManager.location
                        .asObservable()
                        .bind { [weak self] location in
-                           guard let location = location else { return }
-                           self?.routePath?.add(location.coordinate)
-                           self?.route?.path = self?.routePath
-                           self?.setCameraPosition(coordinate: location.coordinate)
+                            guard let location = location else { return }
+                            self?.routePath?.add(location.coordinate)
+                            self?.route?.path = self?.routePath
+                            self?.updateUserMarkerOnMap(for: location.coordinate)
+                            self?.setCameraPosition(coordinate: location.coordinate)
                        }
                        .disposed(by: disposeBag)
     }
@@ -204,5 +206,21 @@ final class MapViewController: UIViewController {
             return
         }
         contentView.mapView.animate(to: camera)
+    }
+    
+    private func updateUserMarkerOnMap(for coordinate: CLLocationCoordinate2D) {
+        userLastMarker?.map = nil
+        let newMarker = GMSMarker(position: coordinate)
+        newMarker.map = contentView.mapView
+        let userAvatar = userManager.fetchAvatar()
+        let markerView = UIImageView(frame: CGRect(x: 0, y: 0, width: 50, height: 50))
+        markerView.layer.masksToBounds = true
+        markerView.layer.cornerRadius = 25
+        
+        
+        markerView.image = userAvatar
+        markerView.tintColor = .blue
+        newMarker.iconView = markerView
+        userLastMarker = newMarker
     }
 }

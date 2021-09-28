@@ -33,6 +33,11 @@
 		FE86176526D65F85001F6D38 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE86176426D65F85001F6D38 /* LocationManager.swift */; };
 		FE9DDB7A26DA2D4F00A4280B /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE9DDB7926DA2D4F00A4280B /* Router.swift */; };
 		FEE6E7C226FC6FE700E05B25 /* NotificationCenterFacade.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEE6E7C126FC6FE700E05B25 /* NotificationCenterFacade.swift */; };
+		FEE6E7C527022FDE00E05B25 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEE6E7C427022FDE00E05B25 /* ProfileViewController.swift */; };
+		FEE6E7C72702324300E05B25 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEE6E7C62702324300E05B25 /* ProfileView.swift */; };
+		FEE6E7CA270232D600E05B25 /* ImageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEE6E7C9270232D600E05B25 /* ImageManager.swift */; };
+		FEE6E7CD2703066900E05B25 /* PermissionsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEE6E7CC2703066900E05B25 /* PermissionsManager.swift */; };
+		FEE6E7D02703071700E05B25 /* FileManagerFacade.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEE6E7CF2703071700E05B25 /* FileManagerFacade.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -66,6 +71,11 @@
 		FE86176426D65F85001F6D38 /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
 		FE9DDB7926DA2D4F00A4280B /* Router.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Router.swift; sourceTree = "<group>"; };
 		FEE6E7C126FC6FE700E05B25 /* NotificationCenterFacade.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationCenterFacade.swift; sourceTree = "<group>"; };
+		FEE6E7C427022FDE00E05B25 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
+		FEE6E7C62702324300E05B25 /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
+		FEE6E7C9270232D600E05B25 /* ImageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageManager.swift; sourceTree = "<group>"; };
+		FEE6E7CC2703066900E05B25 /* PermissionsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PermissionsManager.swift; sourceTree = "<group>"; };
+		FEE6E7CF2703071700E05B25 /* FileManagerFacade.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileManagerFacade.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -218,6 +228,7 @@
 			children = (
 				FE319F0B26D915D000FB63FC /* Login */,
 				FE86172B26CD44E3001F6D38 /* Map */,
+				FEE6E7C327022F4600E05B25 /* Profile */,
 			);
 			path = Flows;
 			sourceTree = "<group>";
@@ -252,6 +263,9 @@
 		FE86176226D65E6A001F6D38 /* Managers */ = {
 			isa = PBXGroup;
 			children = (
+				FEE6E7CE2703070700E05B25 /* FileManagerFacade */,
+				FEE6E7CB2703065300E05B25 /* Permissions */,
+				FEE6E7C8270232CB00E05B25 /* Image */,
 				FEE6E7C026FC6FCB00E05B25 /* NotificationCenter */,
 				FE319F0826D8F91700FB63FC /* User */,
 				FE86176326D65E80001F6D38 /* Location */,
@@ -282,6 +296,39 @@
 				FEE6E7C126FC6FE700E05B25 /* NotificationCenterFacade.swift */,
 			);
 			path = NotificationCenter;
+			sourceTree = "<group>";
+		};
+		FEE6E7C327022F4600E05B25 /* Profile */ = {
+			isa = PBXGroup;
+			children = (
+				FEE6E7C427022FDE00E05B25 /* ProfileViewController.swift */,
+				FEE6E7C62702324300E05B25 /* ProfileView.swift */,
+			);
+			path = Profile;
+			sourceTree = "<group>";
+		};
+		FEE6E7C8270232CB00E05B25 /* Image */ = {
+			isa = PBXGroup;
+			children = (
+				FEE6E7C9270232D600E05B25 /* ImageManager.swift */,
+			);
+			path = Image;
+			sourceTree = "<group>";
+		};
+		FEE6E7CB2703065300E05B25 /* Permissions */ = {
+			isa = PBXGroup;
+			children = (
+				FEE6E7CC2703066900E05B25 /* PermissionsManager.swift */,
+			);
+			path = Permissions;
+			sourceTree = "<group>";
+		};
+		FEE6E7CE2703070700E05B25 /* FileManagerFacade */ = {
+			isa = PBXGroup;
+			children = (
+				FEE6E7CF2703071700E05B25 /* FileManagerFacade.swift */,
+			);
+			path = FileManagerFacade;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -421,7 +468,10 @@
 				FE1CD1B926E22DF50063DE74 /* MapView.swift in Sources */,
 				FE86171326CD4383001F6D38 /* AppDelegate.swift in Sources */,
 				FE319F1726D9172C00FB63FC /* ExUITextField.swift in Sources */,
+				FEE6E7C527022FDE00E05B25 /* ProfileViewController.swift in Sources */,
+				FEE6E7C72702324300E05B25 /* ProfileView.swift in Sources */,
 				FE319F0726D8EF3E00FB63FC /* ExNSPredicate.swift in Sources */,
+				FEE6E7D02703071700E05B25 /* FileManagerFacade.swift in Sources */,
 				FE319F1D26D917FD00FB63FC /* UITextFieldsViewController.swift in Sources */,
 				FE319F1B26D917D500FB63FC /* ExUIViewController.swift in Sources */,
 				FE86175C26D4FF89001F6D38 /* CLLocationCoordinate2DTransformer.swift in Sources */,
@@ -438,6 +488,8 @@
 				FEE6E7C226FC6FE700E05B25 /* NotificationCenterFacade.swift in Sources */,
 				FE319F0A26D8F91F00FB63FC /* UserManager.swift in Sources */,
 				FE86176526D65F85001F6D38 /* LocationManager.swift in Sources */,
+				FEE6E7CA270232D600E05B25 /* ImageManager.swift in Sources */,
+				FEE6E7CD2703066900E05B25 /* PermissionsManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
