@@ -66,5 +66,9 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
+	<key>NSCameraUsageDescription</key>
+	<string>Включите доступ прямо в приложении, чтобы вы могли установить аватар, а также загрузить сертификаты об окончании обучения в свой профиль.</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>Включите доступ прямо в приложении, чтобы вы могли установить аватар, а также загрузить сертификаты об окончании обучения в свой профиль.</string>
 </dict>
 </plist>

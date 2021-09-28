@@ -22,13 +22,15 @@ protocol Router: NSObject {
         
     func present(_ controller: UIViewController)
     
+    func showImagePicker(from sourceType: UIImagePickerController.SourceType)
+    
 }
 
 final class RouterImpl: NSObject, Router {
     
     weak var delegate: UIViewController?
     
-    required init(delegate: UIViewController) {
+    required init(delegate: UIViewController?) {
         self.delegate = delegate
     }
     
@@ -55,6 +57,24 @@ final class RouterImpl: NSObject, Router {
     func present(_ controller: UIViewController) {
         guard let delegate = delegate else { return }
         delegate.present(controller, animated: true, completion: nil)
+    }
+    
+    func showImagePicker(from sourceType: UIImagePickerController.SourceType) {
+        guard let delegate = delegate as? UIViewController
+                                        & UIImagePickerControllerDelegate
+                                        & UINavigationControllerDelegate,
+              UIImagePickerController.isSourceTypeAvailable(sourceType)
+        else { return }
+        
+        let imagePickerController = UIImagePickerController()
+        imagePickerController.modalPresentationStyle = .overCurrentContext
+        imagePickerController.delegate = delegate
+        imagePickerController.sourceType = sourceType
+        imagePickerController.allowsEditing = true
+        delegate.tabBarController?.tabBar.isHidden = true
+        DispatchQueue.main.async {
+            self.present(imagePickerController)
+        }
     }
 
 }

@@ -19,10 +19,18 @@ extension UIViewController {
     }
     
     static func map() -> UITabBarController {
-        let controller = MapViewController()
-        let navigationController = UINavigationController(rootViewController: controller)
+        let mapViewController = MapViewController()
+        mapViewController.title = "Map"
+        mapViewController.tabBarItem.image = UIImage(systemName: "map")
+        let mapNavigationController = UINavigationController(rootViewController: mapViewController)
+        
+        let profileViewController = ProfileViewController()
+        profileViewController.title = "Profile"
+        profileViewController.tabBarItem.image = UIImage(systemName: "person")
+        let profileNavigationController = UINavigationController(rootViewController: profileViewController)
+        
         let tabBarController = UITabBarController(nibName: nil, bundle: nil)
-        tabBarController.setViewControllers([navigationController], animated: false)
+        tabBarController.setViewControllers([mapNavigationController, profileNavigationController], animated: false)
         return tabBarController
     }
     

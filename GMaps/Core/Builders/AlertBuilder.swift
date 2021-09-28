@@ -68,3 +68,63 @@ class AlertBuilderImpl: AlertBuilder {
     }
     
 }
+
+protocol AlertDirector: AnyObject {
+    
+    func update(builder: AlertBuilder)
+    func buildAlertOfNeedGrantedAccess(for type: PermissionType) -> Result<UIAlertController, DirectorErrors>
+    
+}
+
+enum DirectorErrors: Error {
+    case builderNotFound
+}
+
+class AlertDirectorImpl: AlertDirector {
+    
+    private var builder: AlertBuilder?
+    
+    func update(builder: AlertBuilder) {
+        self.builder = builder
+    }
+    
+    init(builder: AlertBuilder) {
+        self.builder = builder
+    }
+    
+    
+    
+    func buildAlertController() {
+        
+    }
+    
+    func buildAlertOfNeedGrantedAccess(for type: PermissionType) -> Result<UIAlertController, DirectorErrors> {
+        guard let builder = builder else { return .failure(.builderNotFound)}
+        builder.reset(preferred: .actionSheet)
+        var title = ""
+        var message = ""
+        switch type {
+        case .camera:
+            title = "Доступ к камере"
+            message = "Чтобы включить доступ к камере, пожалуйста, перейдите в настройки."
+            
+        case .photoLibrary:
+            title = "Доступ к фото"
+            message = "Чтобы включить доступ к фотоальбому, пожалуйста, перейдите в настройки."
+        }
+        
+        let settingsTitle = "Настройки"
+        let cancelTitle = "Отмена"
+        builder.addTitle(title)
+        builder.addMessage(message)
+        builder.addDefaultAction(settingsTitle, isPreferredAction: true) { _ in
+            if let url = URL(string: UIApplication.openSettingsURLString) {
+                UIApplication.shared.open(url, options: [:], completionHandler: nil)
+            }
+        }
+        builder.addDestructiveAction(cancelTitle, isPreferredAction: false, handler: nil)
+        
+        return .success(builder.fetchAlert())
+    }
+    
+}
